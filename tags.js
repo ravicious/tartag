@@ -134,9 +134,6 @@ $(function(){
       var name = this.model.get("name");
       this.$('.tag-name').text(name);
       this.$('.statuses-list').attr('id', this.model.get("name")+'-statuses');
-      //this.input = this.$('.tag-input');
-      //this.input.bind('blur', this.close);
-      //this.input.val(name);
     },
 
     remove: function() {
@@ -164,7 +161,6 @@ $(function(){
 
     render: function() {
       $(this.el).html(this.template(this.model.toJSON()));
-      //$(this.el).fadeIn();
       this.setContent();
       return this;
     },
@@ -197,7 +193,6 @@ $(function(){
 
       Tags.bind('add', this.addOne);
       Statuses.bind('add', this.addOneStatus);
-      //Tags.bind('refresh', this.addAll);
       Tags.bind('refresh', this.addAll);
       Statuses.bind('refresh', this.addAllStatuses);
 
@@ -225,11 +220,6 @@ $(function(){
     },
 
     removeAll: function() {
-      /*
-      Tags.each(function(tag) {
-        tag.clear();
-      });
-      */
       if(confirm('Usunąć wszystkie tagi?')) {
         while(!Tags.isEmpty()) {
           Tags.last().clear();
