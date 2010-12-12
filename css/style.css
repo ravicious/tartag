@@ -1,0 +1,39 @@
+#tartag {
+  padding: 5px;
+  font-family: Arial, sans-serif;
+}
+.title {
+  font-size: 45px;
+}
+#tag-list {
+  margin-left: 45px;
+  list-style: circle;
+  line-height: 25px;
+}
+.clickable {
+  cursor: pointer;
+}
+.smaller {
+  font-size: 85%;
+}
+.statuses-list {
+  line-height: 1.5em;
+}
+.status {
+  width: 450px;
+  line-height: 1.5em;
+}
+.status .status-body {
+  padding-left: 15px;
+  border-bottom: 1px solid #b3b3b3;
+}
+.statuses-list li:nth-child(odd) {
+  background: white;
+}
+.statuses-list li:nth-child(even) {
+  background: #f0f0f0;
+}
+/*
+ * TABS
+ * http://www.sohtanaka.com/web-design/simple-tabs-w-css-jquery/
+ */

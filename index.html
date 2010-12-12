@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="pl">
+  <head>
+    <title>Tartag</title>
+    <meta charset="UTF-8"/>
+
+    <script src="vendor/json2.js"></script>
+    <script src="vendor/jquery-1.4.2.js"></script>
+    <script src="vendor/jquery.jsonp-2.1.4.min.js"></script>
+    <script src="vendor/underscore-1.1.3.js"></script>
+    <script src="vendor/backbone-min.js"></script>
+    <script src="vendor/backbone-localstorage.js"></script>
+
+    <script src="tags.js"></script>
+
+    <link rel="stylesheet" href="css/reset.css">
+    <link rel="stylesheet" href="css/style.css">
+  </head>
+  <body>
+    <div id="tartag">
+      <div class="title">
+        <h1>Tartag</h1>
+      </div>
+
+      <div class="content">
+        <span id="delete-all" class="clickable">[usuń wszystkie tagi]</span>
+        <div id="create-tag">
+          <input id="new-tag" placeholder="Nazwa dla tagu" type="text"/>
+
+          <div id="tags">
+            <ul id="tag-list"></ul>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Templates -->
+
+    <script type="text/template" id="tag-template">
+      <span class='tag-name'></span> <span class='tag-destroy clickable' title='Usuń tag'>[&times;]</span> <span class='tag-toggle clickable' title='Przełącz widoczność wiadomości'>[&#8597;]</span>
+      <ul class="statuses-list" style="display: none;"></ul>
+    </script>
+
+    <script type="text/template" id="status-template">
+      <span class='status-user'><a></a></span> <span class='status-link smaller'></span>
+      <div class='status-body'></div>
+    </script>
+  </body>
+</html>
