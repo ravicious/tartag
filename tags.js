@@ -119,7 +119,7 @@ $(function(){
     },
 
     initialize: function() {
-      //_.bindAll(this, 'render');
+      _.bindAll(this, 'render');
       this.model.view = this;
     },
 
