@@ -50,13 +50,36 @@ $(function(){
         alert('Błąd połączenia z Blipem. Być może taki tag nie istnieje?');
       },
       success: function(json, text_status) {
-        _.each(json, function(status){
+        _.each(json.reverse(), function(status){
           Statuses.create({
             body: status.body,
             blip_id: status.id,
             created_at: status.created_at,
             user: status.user_path.replace('/users/', ''),
-            order: Statuses.nextOrder(),
+            tag_name: tag.get("name")
+          });
+        });
+      }
+    });
+  },
+
+  refresh: function() {
+    var tag = this;
+    var latest_status_id = _.last(tag.statuses()).get("blip_id");
+    $.jsonp({
+      url: 'http://api.blip.pl/tags/'+this.get("name")+'/since/'+latest_status_id+'?include=pictures&callback=?',
+      error: function(error, error_msg) {
+        alert('Błąd połączenia z Blipem. Być może taki tag nie istnieje?');
+      },
+      // json może być pusty - nie ma wtedy żadnych nowych wiadomości
+      success: function(json, text_status) {
+
+        _.each(json.reverse(), function(status){
+          Statuses.create({
+            body: status.body,
+            blip_id: status.id,
+            created_at: status.created_at,
+            user: status.user_path.replace('/users/', ''),
             tag_name: tag.get("name")
           });
         });
@@ -92,13 +115,8 @@ $(function(){
     model: Status,
     localStorage: new Store("statuses"),
 
-    nextOrder: function() {
-      if (!this.length) return 1;
-      return this.last().get('order') + 1;
-    },
-
     comparator: function(status) {
-      return status.get("order");
+      return status.get("blip_id");
     }
   });
 
@@ -115,7 +133,8 @@ $(function(){
 
     events: {
       "click span.tag-destroy": "clear",
-      "click span.tag-toggle": "toggleList"
+      "click span.tag-toggle": "toggleList",
+      "click span.tag-refresh": "refreshTag"
     },
 
     initialize: function() {
@@ -146,6 +165,10 @@ $(function(){
 
     toggleList: function() {
       this.$('.statuses-list').slideToggle();
+    },
+
+    refreshTag: function() {
+      this.model.refresh();
     }
   });
 
@@ -161,6 +184,7 @@ $(function(){
 
     render: function() {
       $(this.el).html(this.template(this.model.toJSON()));
+      $(this.el).fadeIn();
       this.setContent();
       return this;
     },
@@ -208,7 +232,7 @@ $(function(){
     addOneStatus: function(status) {
       var view = new StatusView({model:status});
       var tag_name = status.get("tag_name");
-      this.$('#'+tag_name+'-statuses').append(view.render().el);
+      this.$('#'+tag_name+'-statuses').prepend(view.render().el);
     },
 
     addAll: function() {
@@ -216,6 +240,7 @@ $(function(){
     },
 
     addAllStatuses: function() {
+      //_.each(Statuses.models.reverse(), this.addOneStatus);
       Statuses.each(this.addOneStatus);
     },
 
