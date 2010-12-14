@@ -240,7 +240,6 @@ $(function(){
     },
 
     addAllStatuses: function() {
-      //_.each(Statuses.models.reverse(), this.addOneStatus);
       Statuses.each(this.addOneStatus);
     },
 
