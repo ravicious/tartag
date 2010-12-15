@@ -163,7 +163,11 @@ $(function(){
     },
 
     remove: function() {
-      $(this.el).fadeOut();
+      var element = this.el;
+      $(element).fadeOut(function() {
+        // usuwa cały element z dokumentu (w tym wyświetlaną listę statusów)
+        $(element).remove();
+      });
     },
 
     clear: function() {
