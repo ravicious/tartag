@@ -33,3 +33,6 @@
 .statuses-list li:nth-child(even) {
   background: #f0f0f0;
 }
+.highlight {
+  background-color: #FFFCDD !important;
+}

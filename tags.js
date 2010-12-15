@@ -63,7 +63,7 @@ $(function(){
     });
   },
 
-  refresh: function() {
+  refresh: function(callback) {
     var tag = this;
     var latest_status_id = _.last(tag.statuses()).get("blip_id");
     $.jsonp({
@@ -83,6 +83,12 @@ $(function(){
             tag_name: tag.get("name")
           });
         });
+
+        if(typeof callback === 'function')
+        {
+          setTimeout(callback, 100);
+        }
+
       }
     });
   }
@@ -140,6 +146,7 @@ $(function(){
     initialize: function() {
       _.bindAll(this, 'render');
       this.model.view = this;
+      this.listName = this.model.get("name")+'-statuses';
     },
 
     render: function() {
@@ -152,7 +159,7 @@ $(function(){
     setContent: function() {
       var name = this.model.get("name");
       this.$('.tag-name').text(name);
-      this.$('.statuses-list').attr('id', this.model.get("name")+'-statuses');
+      this.$('.statuses-list').attr('id', this.listName);
     },
 
     remove: function() {
@@ -168,7 +175,20 @@ $(function(){
     },
 
     refreshTag: function() {
-      this.model.refresh();
+      var tagView = this;
+      // usuń podświetlenie ze wszystkich statusów należących do tagu
+      $('#'+this.listName+' li').removeClass('highlight');
+
+      var statuses_before_refresh = this.model.statuses();
+
+      this.model.refresh(function() {
+        var new_statuses = array_diff(tagView.model.statuses(), statuses_before_refresh);
+
+        // podświetl wszystkie nowe statusy
+        _.each(new_statuses, function(status) {
+          status.view.highlight();
+        });
+      });
     }
   });
 
@@ -199,6 +219,10 @@ $(function(){
 
     remove: function() {
       $(this.el).fadeOut();
+    },
+
+    highlight: function() {
+      $(this.el).addClass('highlight');
     }
   });
 
