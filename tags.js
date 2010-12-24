@@ -245,7 +245,8 @@ $(function(){
 
     events: {
       "keypress #new-tag": "createOnEnter",
-      "click #delete-all": "removeAll"
+      "click #delete-all": "removeAll",
+      "click #refresh-all": "refreshAll"
     },
 
     initialize: function() {
@@ -286,6 +287,12 @@ $(function(){
           Tags.last().clear();
         }
       }
+    },
+
+    refreshAll: function() {
+      Tags.each(function(tag) {
+        tag.view.refreshTag();
+      });
     },
 
     newAttributes: function() {
