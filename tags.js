@@ -42,36 +42,31 @@ $(function(){
     this.view.remove();
   },
 
-  fetch_statuses: function() {
+  send_request: function(type, callback) {
     var tag = this;
-    $.jsonp({
-      url: 'http://api.blip.pl/tags/'+this.get("name")+'.json?include=pictures&callback=?',
-      error: function(error, error_msg) {
-        alert('Błąd połączenia z Blipem. Być może taki tag nie istnieje?');
-      },
-      success: function(json, text_status) {
-        _.each(json.reverse(), function(status){
-          Statuses.create({
-            body: status.body,
-            blip_id: status.id,
-            created_at: status.created_at,
-            user: status.user_path.replace('/users/', ''),
-            tag_name: tag.get("name")
-          });
-        });
-      }
-    });
-  },
 
-  refresh: function(callback) {
-    var tag = this;
-    var latest_status_id = _.last(tag.statuses()).get("blip_id");
+    if(type == "refresh") {
+      var latest_status_id = _.last(tag.statuses()).get("blip_id");
+      var request_url = 'http://api.blip.pl/tags/'+this.get("name")+'/since/'+latest_status_id+'?include=pictures&callback=?'
+      // wyświetl loadera
+      tag.view.toggleLoader();
+    } else {
+      var request_url = 'http://api.blip.pl/tags/'+this.get("name")+'.json?include=pictures&callback=?'
+    }
+
+
     $.jsonp({
       url: 'http://api.blip.pl/tags/'+this.get("name")+'/since/'+latest_status_id+'?include=pictures&callback=?',
       error: function(error, error_msg) {
         alert('Błąd połączenia z Blipem. Być może taki tag nie istnieje?');
       },
       // json może być pusty - nie ma wtedy żadnych nowych wiadomości
+      complete: function() {
+        if(type == "refresh"){
+          // schowaj loadera
+          tag.view.toggleLoader();
+        }
+      },
       success: function(json, text_status) {
 
         _.each(json.reverse(), function(status){
@@ -91,10 +86,20 @@ $(function(){
 
       }
     });
+
+  },
+
+  fetch_statuses: function() {
+    this.send_request("fetch");
+  },
+
+  refresh: function(callback) {
+    this.send_request("refresh", callback);
   }
 
   });
 
+  // TODO: Walidacja unikalności blip_id
   window.Status = Backbone.Model.extend({
     clear: function() {
       this.destroy();
@@ -176,6 +181,10 @@ $(function(){
 
     toggleList: function() {
       this.$('.statuses-list').slideToggle();
+    },
+
+    toggleLoader: function() {
+      this.$('.loader').fadeToggle();
     },
 
     refreshTag: function() {
