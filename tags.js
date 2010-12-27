@@ -237,7 +237,9 @@ $(function(){
     },
 
     setContent: function() {
-      this.$('.status-body').text(this.model.get("body"));
+      this.$('.content').text(this.model.get("body"));
+      this.$('.avatar').attr('src', 'http://blip.pl/users/'+this.model.get("user")+'/avatar/atto.jpg');
+      this.$('.avatar').attr('alt', this.model.get("user"));
       this.$('.status-user a').text('^' + this.model.get("user"));
       this.$('.status-user a').attr('href', 'http://blip.pl/users/'+this.model.get("user")+'/dashboard');
       var status_id = this.model.get("blip_id");
