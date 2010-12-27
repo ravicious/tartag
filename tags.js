@@ -99,11 +99,25 @@ $(function(){
 
   });
 
-  // TODO: Walidacja unikalności blip_id
   window.Status = Backbone.Model.extend({
+    initialize: function() {
+      _.bindAll(this, "error");
+      this.bind("error", this.handle_error);
+    },
+
+    handle_error: function() {
+      this.destroy();
+    },
+
     clear: function() {
       this.destroy();
       this.view.remove();
+    },
+
+    validate: function(attrs) {
+      if(_.include(Statuses.pluck("blip_id"), attrs.blip_id)) {
+        return "Podany status już istnieje."
+      }
     }
   });
 
