@@ -5,10 +5,24 @@
 .title {
   font-size: 45px;
 }
+#new-tag {
+  margin-bottom: 3px;
+}
 #tag-list {
-  margin-left: 45px;
-  list-style: circle;
+  list-style: none;
   line-height: 25px;
+  min-width: 420px;
+  margin: 0 auto;
+}
+.tag {
+  float: left;
+  height: 400px;
+  width: 420px !important;
+  overflow: auto;
+}
+.panel {
+  background-color: #3d3d3d;
+  color: white;
 }
 .clickable {
   cursor: pointer;
@@ -20,7 +34,6 @@
   line-height: 1.5em;
 }
 .status {
-  width: 450px;
   line-height: 1.5em;
 }
 .status .status-body {

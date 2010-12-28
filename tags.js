@@ -151,14 +151,13 @@ $(function(){
 
   // Tag item view
   window.TagView = Backbone.View.extend({
-    tagName: "li",
+    tagName: "div",
     className: "tag",
 
     template: _.template($('#tag-template').html()),
 
     events: {
       "click span.tag-destroy": "clear",
-      "click span.tag-toggle": "toggleList",
       "click span.tag-refresh": "refreshTag"
     },
 
@@ -191,10 +190,6 @@ $(function(){
 
     clear: function() {
       this.model.clear();
-    },
-
-    toggleList: function() {
-      this.$('.statuses-list').slideToggle();
     },
 
     toggleLoader: function() {

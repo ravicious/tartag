@@ -23,25 +23,27 @@
         <h1>Tartag</h1>
       </div>
 
-      <div class="content">
-        <span id="refresh-all" class="clickable">[odśwież wszystkie]</span>
-        <span id="delete-all" class="clickable">[usuń wszystkie]</span>
-        <div id="create-tag">
-          <input id="new-tag" placeholder="Nazwa tagu" type="text"/>
+      <span id="refresh-all" class="clickable">[odśwież wszystkie]</span>
+      <span id="delete-all" class="clickable">[usuń wszystkie]</span>
+      <div id="create-tag">
+        <input id="new-tag" placeholder="Nazwa tagu" type="text"/>
+      </div>
 
-          <div id="tags">
-            <ul id="tag-list"></ul>
-          </div>
-        </div>
+      <div id="tags">
+        <div id="tag-list"></div>
       </div>
     </div>
 
     <!-- Templates -->
 
     <script type="text/template" id="tag-template">
-      <span class='tag-name'></span> <span class='tag-destroy clickable' title='Usuń tag'>[&times;]</span> <span class='tag-refresh clickable'>[refresh]</span> <span class='tag-toggle clickable' title='Przełącz widoczność wiadomości'>[&#8597;]</span>
-      <img src="css/ajax-loader.gif" class="loader" alt="Wczytywanie" style="display:none" />
-      <ul class="statuses-list" style="display: none;"></ul>
+      <div class='panel'>
+        <span class='tag-name'></span>
+        <span class='tag-destroy clickable' title='Usuń tag'>[&times;]</span>
+        <span class='tag-refresh clickable'>[odśwież]</span>
+        <img src="css/ajax-loader.gif" class="loader" alt="Wczytywanie" style="display:none" />
+      </div>
+      <ul class="statuses-list"></ul>
     </script>
 
     <script type="text/template" id="status-template">
