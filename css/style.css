@@ -16,9 +16,7 @@
 }
 .tag {
   float: left;
-  height: 400px;
   width: 420px !important;
-  overflow: auto;
 }
 .panel {
   background-color: #3d3d3d;
@@ -32,6 +30,9 @@
 }
 .statuses-list {
   line-height: 1.5em;
+  height: 400px;
+  overflow: auto;
+  border-bottom: 1px solid #d0d0d0;
 }
 .status {
   line-height: 1.5em;
