@@ -28,6 +28,9 @@
 .smaller {
   font-size: 85%;
 }
+.less-visible {
+  color: #3d3d3d;
+}
 .statuses-list {
   line-height: 1.5em;
   height: 400px;

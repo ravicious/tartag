@@ -60,7 +60,7 @@ require(["vendor/json2.js", "vendor/jquery.jsonp-2.1.4.min.js", "vendor/undersco
 
         newAttributes: function() {
           return {
-            name: this.input.val(),
+            name: this.input.val().toLowerCase(),
             order: Tags.nextOrder(),
           };
         },
