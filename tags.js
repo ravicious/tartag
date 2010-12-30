@@ -68,12 +68,21 @@ send_request: function(type, callback) {
     success: function(json, text_status) {
 
       _.each(json.reverse(), function(status){
+
+        var photo_url = undefined;
+        // Sprawdź, czy status zawiera zdjęcie,
+        // jeśli tak - ustaw photo_url na miniaturę zdjęcia
+        if (!_.isUndefined(status.pictures)) {
+          photo_url = status.pictures[0].url.replace(/(\..{3}$)/, '_inmsg.jpg');
+        }
+
         Statuses.create({
           body: status.body,
           blip_id: status.id,
           created_at: status.created_at,
           user: status.user_path.replace('/users/', ''),
-          tag_name: tag.get("name")
+          tag_name: tag.get("name"),
+          photo: photo_url
         });
       });
 

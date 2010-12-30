@@ -1,5 +1,10 @@
-head.js("vendor/jquery-1.4.4.min.js", "vendor/json2.js", "vendor/jquery.jsonp-2.1.4.min.js", "vendor/underscore-min.js", "vendor/backbone-min.js", "vendor/backbone-localstorage.js", "vendor/additional_functions.js", function() {
+head.js("vendor/jquery-1.4.4.min.js", "vendor/json2.js", "vendor/jquery.jsonp-2.1.4.min.js", "vendor/underscore-min.js", "vendor/backbone-min.js", "vendor/backbone-localstorage.js", "vendor/additional_functions.js", "vendor/facebox/facebox.js", function() {
   $(function() {
+
+    // Facebox!
+    $.facebox.settings.closeImage = 'vendor/facebox/closelabel.png'
+    $.facebox.settings.loadingImage = 'vendor/facebox/loading.gif'
+
     head.js("tags.js", "statuses.js", function() {
       
       // Application

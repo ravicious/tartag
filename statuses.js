@@ -56,6 +56,13 @@ window.StatusView = Backbone.View.extend({
     this.$('.status-user a').attr('href', 'http://blip.pl/users/'+this.model.get("user")+'/dashboard');
     var status_id = this.model.get("blip_id");
     this.$('.status-link').html('<a href="http://blip.pl/s/'+status_id+'">[idź do statusu]</a>');
+
+    // Dołącz zdjęcie, jeśli status je posiada
+    photo = this.model.get("photo");
+    if (!_.isUndefined(photo)) {
+      this.$('.content').append(' <a rel="facebox" class="photo" href="'+photo+'">[zdjęcie]</a>');
+      this.$('.photo').facebox();
+    }
   },
 
   remove: function() {
