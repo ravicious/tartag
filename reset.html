@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="pl">
+  <head>
+    <title>Tartag - reset</title>
+    <meta charset="UTF-8"/>
+
+    <script type="text/javascript" charset="utf-8">
+      window.onload = function() {
+        if(confirm('Zresetować bazę aplikacji? Usunie to wszystkie dodane tagi.')) {
+          localStorage.clear();
+          alert('Pomyślnie zresetowano aplikację.');
+        } else {
+          alert('Okej, aplikacja nie zostanie zresetowana.');
+        }
+      }
+    </script>
+  </head>
+  <body>
+    <p>
+      Po co istnieje ta strona?
+    </p>
+    <p>
+      Otóż czasem nowy kod wrzucany na serwer nie jest kompatybilny ze starymi danymi zawartymi w Twojej bazie. Dlatego zdarza się, że jedynym sposobem na naprawienie problemu jest, niestety, utrata wszystkich danych, czytaj: reset.
+    </p>
+  </body>
+</html>
