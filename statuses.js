@@ -49,7 +49,7 @@ window.StatusView = Backbone.View.extend({
   },
 
   setContent: function() {
-    this.$('.content').text(this.model.get("body"));
+    this.$('.content').text(this.model.escape("body"));
     this.$('.avatar').attr('src', 'http://blip.pl/users/'+this.model.get("user")+'/avatar/atto.jpg');
     this.$('.avatar').attr('alt', this.model.get("user"));
     this.$('.status-user a').text('^' + this.model.get("user"));

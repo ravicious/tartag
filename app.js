@@ -1,4 +1,6 @@
-head.js("vendor/jquery-1.4.4.min.js", "vendor/json2.js", "vendor/jquery.jsonp-2.1.4.min.js", "vendor/underscore-min.js", "vendor/backbone-min.js", "vendor/backbone-localstorage.js", "vendor/additional_functions.js", "vendor/facebox/facebox.js", function() {
+head.js("vendor/jquery-1.4.4.min.js", "vendor/jquery-ui-1.8.7.custom.min.js", "vendor/json2.js", "vendor/jquery.jsonp-2.1.4.min.js", "vendor/underscore-min.js", "vendor/backbone-min.js", "vendor/backbone-localstorage.js", "vendor/additional_functions.js", "vendor/facebox/facebox.js", function() {
+  // jQuery UI components:
+  //  - Sortable
   $(function() {
 
     // Facebox!
@@ -7,6 +9,18 @@ head.js("vendor/jquery-1.4.4.min.js", "vendor/json2.js", "vendor/jquery.jsonp-2.
 
     head.js("tags.js", "statuses.js", function() {
       
+      // Sortable!
+      $('#tag-list').sortable({
+        update: function(event, ui) {
+          // Zapisz pozycję wszystkich tagów
+          // (słabe rozwiązanie, ale to przez to pieprzone jQuery UI)
+          _.each($('#tag-list > div'), function(element, index) {
+            tag = Tags.get($(element).attr('data-id'));
+            tag.save({order: index + 1}, {silent: true});
+          });
+        }
+      });
+
       // Application
       window.AppView = Backbone.View.extend({
         el: $('#tartag'),

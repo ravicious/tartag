@@ -151,6 +151,8 @@ window.TagView = Backbone.View.extend({
 
   setContent: function() {
     var name = this.model.get("name");
+    $(this.el).attr('id', this.model.get("name"));
+    $(this.el).attr('data-id', this.model.get("id"));
     this.$('.tag-name').text(name);
     this.$('.statuses-list').attr('id', this.listName);
   },

@@ -21,6 +21,7 @@
 .panel {
   background-color: #3d3d3d;
   color: white;
+  cursor: move;
 }
 .clickable {
   cursor: pointer;
