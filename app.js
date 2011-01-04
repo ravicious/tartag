@@ -11,6 +11,8 @@ head.js("vendor/jquery-1.4.4.min.js", "vendor/jquery-ui-1.8.7.custom.min.js", "v
       
       // Sortable!
       $('#tag-list').sortable({
+        handle: '.panel',
+        delay: 200,
         update: function(event, ui) {
           // Zapisz pozycję wszystkich tagów
           // (słabe rozwiązanie, ale to przez to pieprzone jQuery UI)
