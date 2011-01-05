@@ -59,10 +59,14 @@ window.StatusView = Backbone.View.extend({
 
   setContent: function() {
     this.$('.content').html(this.model.parseBody());
+    this.$('.status-date').html(this.model.get("created_at"));
+
     this.$('.avatar').attr('src', 'http://blip.pl/users/'+this.model.get("user")+'/avatar/atto.jpg');
     this.$('.avatar').attr('alt', this.model.get("user"));
+
     this.$('.status-user a').text('^' + this.model.get("user"));
     this.$('.status-user a').attr('href', 'http://blip.pl/users/'+this.model.get("user")+'/dashboard');
+
     var status_id = this.model.get("blip_id");
     this.$('.status-link').html('<a href="http://blip.pl/s/'+status_id+'">[idź do statusu]</a>');
 
