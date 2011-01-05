@@ -17,6 +17,15 @@ window.Status = Backbone.Model.extend({
     if(_.include(Statuses.pluck("blip_id"), attrs.blip_id)) {
       return "Podany status już istnieje."
     }
+  },
+
+  parseBody: function() {
+    var body = this.get("body");
+    body = body.replace('&', '&amp;').replace(/\>/gi, '&gt;').replace(/\</gi, '&lt;');
+    body = BodyParser.justLink(body);
+    body = BodyParser.userLink(body, "http://blip.pl/users/");
+    body = BodyParser.tagLink(body, "http://blip.pl/tags/");
+    return body;
   }
 });
 
@@ -49,7 +58,7 @@ window.StatusView = Backbone.View.extend({
   },
 
   setContent: function() {
-    this.$('.content').text(this.model.escape("body"));
+    this.$('.content').html(this.model.parseBody());
     this.$('.avatar').attr('src', 'http://blip.pl/users/'+this.model.get("user")+'/avatar/atto.jpg');
     this.$('.avatar').attr('alt', this.model.get("user"));
     this.$('.status-user a').text('^' + this.model.get("user"));
@@ -60,7 +69,7 @@ window.StatusView = Backbone.View.extend({
     // Dołącz zdjęcie, jeśli status je posiada
     photo = this.model.get("photo");
     if (!_.isUndefined(photo)) {
-      this.$('.content').append(' <a rel="facebox" class="photo" href="'+photo+'">[zdjęcie]</a>');
+      this.$('.content').append(' <a rel="facebox" class="photo" href="'+photo+'">[foto]</a>');
       this.$('.photo').facebox();
     }
   },
