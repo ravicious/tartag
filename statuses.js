@@ -14,7 +14,17 @@ window.Status = Backbone.Model.extend({
   },
 
   validate: function(attrs) {
-    if(_.include(Statuses.pluck("blip_id"), attrs.blip_id)) {
+    tag = this;
+
+    statuses_scope = Statuses.filter(function(status) {
+      return status.get("tag_name") == tag.get("tag_name");
+    });
+    blip_ids = _.map(statuses_scope, function(status) {
+      return status.get("blip_id");
+    });
+
+    // Sprawdź, czy dany tag zawiera już status o danym id
+    if(_.include(blip_ids, attrs.blip_id)) {
       return "Podany status już istnieje."
     }
   },
