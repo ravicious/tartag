@@ -16,12 +16,11 @@ initialize: function() {
 
   this.bind("error", this.display_error);
   this.bind("add", this.fetch_statuses);
-
 },
 
 display_error: function(model, error) {
   this.destroy();
-  alert(error);
+  $.facebox('<p>'+error+'</p>');
 },
 
 statuses: function() {
@@ -54,9 +53,20 @@ send_request: function(type, callback) {
 
 
   $.jsonp({
-    url: 'http://api.blip.pl/tags/'+this.get("name")+'/since/'+latest_status_id+'?include=pictures&callback=?',
+    url: request_url,
     error: function(error, error_msg) {
-      alert('Błąd połączenia z Blipem. Być może taki tag nie istnieje?');
+      message = '';
+      if(type == "fetch") {
+
+        // Usuń tag, jeśli nie udało się pobrać statusów przy jego dodawaniu
+        tag.clear();
+        message = '<p>Wygląda na to, że taki tag nie istnieje lub nie mogliśmy połączyć się z Blipem.</p>';
+
+      } else {
+        message = '<p>Ups, nie możemy połączyć się z Blipem. Spróbuj&nbsp;ponownie za chwilę.</p>';
+      }
+
+      $.facebox(message);
     },
     // json może być pusty - nie ma wtedy żadnych nowych wiadomości
     complete: function() {
