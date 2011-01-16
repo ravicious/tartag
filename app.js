@@ -5,7 +5,8 @@ head.js("vendor/jquery-1.4.4.min.js", "vendor/facebox/facebox.js", function() {
   $.facebox.settings.loadingImage = 'vendor/facebox/loading.gif'
   $.facebox('<p>Poczekaj na załadowanie się strony.</p>');
 
-  head.js("vendor/jquery-ui-1.8.7.custom.min.js", "vendor/json2.js", "vendor/jquery.jsonp-2.1.4.min.js", "vendor/underscore-min.js", "vendor/backbone-min.js", "vendor/backbone-localstorage.js", "vendor/additional_functions.js", function() {
+  // vendor_minimized.js zawiera: "vendor/jquery-ui-1.8.7.custom.min.js", "vendor/json2.js", "vendor/jquery.jsonp-2.1.4.min.js", "vendor/underscore-min.js", "vendor/backbone-min.js", "vendor/backbone-localstorage.js", "vendor/additional_functions.js"
+  head.js("vendor/vendor_minimized.js", function() {
     // jQuery UI components:
     //  - Sortable
     $(function() {
