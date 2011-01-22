@@ -43,28 +43,24 @@ var BodyParser = (function() {
   function userLink(body, url) {
     return process(body, findUsers, function(user){
       var clean = user.replace(/\^/,'');
-      return '<a data-action="user" data-username="'+clean+'" href="'+url+clean+'">'+user+'</a>';
+      return '<a href="'+url+clean+'">'+user+'</a>';
     });
   }
   function tagLink(body,  url) {
     return process(body, findTags, function(tag){
       var clean = tag.replace(/^#/,'');
-      return '<a data-action="tag" data-tag="'+clean+'" href="'+url+clean+'">'+tag+'</a>';
+      return '<a href="'+url+clean+'">'+tag+'</a>';
     });
   }
 
   function justLink(body) {
     return process(body, findLinks, function(link){
-        var content = link;
-        var action = "link";
+        var content = "[link]";
         var href = link;
       if (link.match(/blip.pl\/[s|dm|pm]/)) {
         content = "[blip]";
-        action = "bliplink";
-        href= "#";
-
       }
-      return '<a data-action="'+action+'" href="'+href+'" data-url="'+link+'">'+content+'</a>';
+      return '<a href="'+href+'">'+content+'</a>';
     });
   }
 
