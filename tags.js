@@ -70,6 +70,8 @@ send_request: function(type, callback) {
     },
     // json może być pusty - nie ma wtedy żadnych nowych wiadomości
     complete: function() {
+      // Upewnij się, że tag nie zawiera więcej niż 25 ostatnich statusów
+      tag.compactStatuses();
       if(type == "refresh"){
         // schowaj loadera
         tag.view.toggleLoader();
@@ -95,9 +97,6 @@ send_request: function(type, callback) {
           photo: photo_url
         });
       });
-
-      // Upewnij się, że tag nie zawiera więcej niż 25 ostatnich statusów
-      tag.compactStatuses();
 
       if(typeof callback === 'function')
       {
