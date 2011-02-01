@@ -96,6 +96,9 @@ send_request: function(type, callback) {
         });
       });
 
+      // Upewnij się, że tag nie zawiera więcej niż 25 ostatnich statusów
+      tag.compactStatuses();
+
       if(typeof callback === 'function')
       {
         setTimeout(callback, 100);
@@ -112,6 +115,13 @@ fetch_statuses: function() {
 
 refresh: function(callback) {
   this.send_request("refresh", callback);
+},
+
+// Każdy tag posiada maksymalnie 25 statusów
+compactStatuses: function() {
+  while(_.size(this.statuses()) > 25) {
+    _.first(this.statuses()).clear();
+  }
 }
 
 });
