@@ -118,8 +118,15 @@ refresh: function(callback) {
 
 // Każdy tag posiada maksymalnie 25 statusów
 compactStatuses: function() {
-  while(_.size(this.statuses()) > 25) {
-    _.first(this.statuses()).clear();
+  statuses_size = _.size(this.statuses());
+
+  if (statuses_size > 25) {
+
+    statuses_to_clear = _.first(this.statuses(), statuses_size - 25);
+
+    _.each(statuses_to_clear, function(status) {
+      status.clear();
+    });
   }
 }
 
