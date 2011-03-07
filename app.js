@@ -50,6 +50,10 @@ head.js("vendor/jquery-1.4.4.min.js", "vendor/facebox/facebox.js", function() {
 
             Tags.fetch();
             Statuses.fetch();
+            Tags.each(function(tag) {
+              // Upewnij się, że tag nie zawiera więcej niż 25 ostatnich statusów
+              tag.compactStatuses();
+            });
             $(document).trigger('close.facebox') // schowaj okno informujące o wczytywaniu strony 
           },
 
