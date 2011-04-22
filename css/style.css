@@ -65,3 +65,7 @@ body {
 .highlight {
   background-color: #fffac2 !important;
 }
+#facebox img {
+  max-width: 700px;
+  max-height: 600px;
+}
