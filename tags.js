@@ -83,7 +83,7 @@ send_request: function(type, callback) {
         // Sprawdź, czy status zawiera zdjęcie,
         // jeśli tak - ustaw photo_url na miniaturę zdjęcia
         if (!_.isUndefined(status.pictures)) {
-          photo_url = status.pictures[0].url.replace(/(\..{3}$)/, '_inmsg.jpg');
+          photo_url = status.pictures[0].url;
         }
 
         Statuses.create({
