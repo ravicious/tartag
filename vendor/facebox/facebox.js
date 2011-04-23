@@ -88,6 +88,8 @@
       loadingImage : '/facebox/loading.gif',
       closeImage   : '/facebox/closelabel.png',
       imageTypes   : [ 'png', 'jpg', 'jpeg', 'gif' ],
+      maxWidth     : 700,
+      maxHeight    : 600,
       faceboxHtml  : '\
     <div id="facebox" style="display:none;"> \
       <div class="popup"> \
@@ -254,7 +256,11 @@
   function fillFaceboxFromImage(href, klass) {
     var image = new Image()
     image.onload = function() {
-      $.facebox.reveal('<div class="image"><img src="' + image.src + '" /></div>', klass)
+      style = 'style="max-width: '+$.facebox.settings.maxWidth+'px;max-height: '+$.facebox.settings.maxHeight+'px;"';
+      $.facebox.reveal('<div class="image"><img src="' + image.src + '" '+style+' /></div>', klass)
+      if (image.width > $.facebox.settings.maxWidth || image.height > $.facebox.settings.maxHeight) {
+        $('#facebox .content').append('<a href="'+image.src+'" class="full">Pełny rozmiar</a>');
+      }
     }
     image.src = href
   }

@@ -78,3 +78,7 @@
   background-color: #000;
   z-index: 99;
 }
+
+.full {
+  font-size: smaller;
+}
