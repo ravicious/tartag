@@ -1,4 +1,4 @@
-head.js("vendor/jquery-1.4.4.min.js", "vendor/facebox/facebox.js", function() {
+head.js("vendor/jquery-1.6.min.js", "vendor/facebox/facebox.js", function() {
 
   // Facebox!
   $.facebox.settings.closeImage = 'vendor/facebox/closelabel.png'
