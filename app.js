@@ -17,7 +17,7 @@ head.js("vendor/jquery-1.6.min.js", "vendor/facebox/facebox.js", function() {
 
         // Sortable!
         $('#tag-list').sortable({
-          handle: '.panel',
+          handle: '.tag-info',
           delay: 200,
           update: function(event, ui) {
             // Zapisz pozycję wszystkich tagów

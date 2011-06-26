@@ -156,8 +156,8 @@ window.TagView = Backbone.View.extend({
   template: _.template($('#tag-template').html()),
 
   events: {
-    "click span.tag-destroy": "clear",
-    "click span.tag-refresh": "refreshTag"
+    "click .tag-destroy": "clear",
+    "click .tag-refresh": "refreshTag"
   },
 
   initialize: function() {
@@ -177,7 +177,7 @@ window.TagView = Backbone.View.extend({
     var name = this.model.get("name");
     $(this.el).attr('id', this.model.get("name"));
     $(this.el).attr('data-id', this.model.get("id"));
-    this.$('.tag-name').text(name);
+    this.$('.name').text(name);
     this.$('.statuses-list').attr('id', this.listName);
   },
 

@@ -1,67 +1,233 @@
+@font-face {
+  font-family: 'PT Sans';
+  src: url('ptsans/PTS55F-webfont.eot');
+  src: url('ptsans/PTS55F-webfont.eot?#iefix') format('embedded-opentype'),
+       url('ptsans/PTS55F-webfont.woff') format('woff'),
+       url('ptsans/PTS55F-webfont.ttf') format('truetype'),
+       url('ptsans/PTS55F-webfont.svg#PTSansRegular') format('svg');
+  font-weight: normal;
+  font-style: normal;
+}
+
 body {
-  font-family: Arial, sans-serif;
-}
-#tartag {
-  padding: 5px;
-}
-.title {
-  font-size: 45px;
-}
-#new-tag {
-  margin-bottom: 3px;
-}
-#tag-list {
-  list-style: none;
-  line-height: 25px;
-  min-width: 420px;
-  margin: 0 auto;
-}
-.tag {
-  float: left;
-  width: 420px !important;
-}
-.panel {
-  background-color: #3d3d3d;
-  color: white;
-  cursor: move;
-}
-.clickable {
-  cursor: pointer;
-}
-.smaller {
-  font-size: 85%;
-}
-.less-visible {
+  font-family: "PT Sans", sans-serif;
   color: #3d3d3d;
 }
-.statuses-list {
-  line-height: 1.5em;
-  height: 400px;
-  overflow: auto;
-  border-bottom: 1px solid #d0d0d0;
+
+#tartag {
+  margin: 5px auto;
+  max-width: 968px;
 }
-.status {
-  line-height: 1.5em;
+
+#header {
+  border-top: 3px solid #3d3d3d;
+  margin-bottom: 3px;
+  position: relative;
 }
-.status .status-body {
-  padding-left: 15px;
-  border-bottom: 1px solid #b3b3b3;
-  clear: both;
-  min-height: 66px;
-}
-.status .avatar {
+
+#logo {
   float: left;
-  width: 60px;
-  height: 60px;
-  margin-right: 6px;
-  border: 1px solid #3d3d3d;
+  font-size: 56px;
+  margin-right: 65px;
 }
+
+.horizontal-list li {
+  float: left;
+  margin-right: 5px;
+}
+
+#nav {
+  float: right;
+  margin-top: -25px;
+  position: absolute;
+  top: 22px;
+  right: 0;
+}
+
+#nav li {
+  border-top: 3px solid #3d3d3d;
+  padding-top: 5px;
+  -webkit-transition: all 0.3s;
+  -moz-transition: all 0.3s;
+}
+
+#nav li a {
+  color: #3D3D3D;
+  -webkit-transition: all 0.3s;
+  -moz-transition: all 0.3s;
+}
+
+#nav li:hover {
+  border-top: 3px solid #FF9900;
+}
+
+#actions {
+  font-size: 50px;
+}
+
+#actions li {
+  height: 66px;
+}
+
+#actions a {
+  display: block;
+  color: white;
+  text-shadow: #3D3D3D 0 0 5px;
+  box-shadow: #FF9900 0 2px 0;
+  background: #3D3D3D;
+  width: 50px;
+  height: 66px;
+  text-align: center;
+}
+
+#create-tag {
+  float: left;
+  margin-top: 14px;
+}
+
+#new-tag {
+  height: 40px;
+  font-family: "PT Sans", sans-serif;
+  font-size: 23px;
+  border: solid 1px #3D3D3D;
+  box-shadow: 0 0 2px #3D3D3D;
+  -webkit-transition: all 0.2s;
+  -moz-transition: all 0.3s;
+}
+
+#new-tag:focus {
+  border: solid 1px #FF9900;
+  box-shadow: 0 0 4px #FF9900;
+  color: #434343;
+}
+
+#tag-list .tag {
+  width: 484px;
+  float: left;
+}
+
+.tag-info, .statuses-list {
+  width: 484px;
+}
+
+.tag-info {
+  height: 26px;
+  width: 484px;
+  background: #3d3d3d;
+  cursor: move;
+}
+
+.tag-info .name {
+  overflow: hidden;
+  padding-left: 3px;
+  font-weight: bold;
+  color: white;
+}
+
+.tag-info .name:hover {
+  text-shadow: white 0 0 5px;
+}
+
+.tag-info .tag-refresh, .tag-info .tag-destroy {
+  float: right;
+  margin-right: 5px;
+  color: white;
+}
+
+.statuses-list {
+  display: block;
+  width: 484px;
+  height: 384px;
+  overflow: auto;
+}
+
 .statuses-list li:nth-child(odd) {
   background: white;
 }
+
 .statuses-list li:nth-child(even) {
-  background: #f0f0f0;
+  background: #f3f3f3;
 }
+
+.status {
+  border-bottom: 1px solid #b3b3b3;
+  line-height: 1.3em;
+  padding-top: 5px;
+  padding-left: 2px;
+}
+
+.status .avatar {
+  float: right;
+  margin: 0 5px 5px 5px;
+  border: 1px solid white;
+  box-shadow: 0 0 2px #3D3D3D;
+  -webkit-transition: all 0.3s;
+  -moz-transition: all 0.3s;
+}
+
+.status .avatar:hover {
+  box-shadow: 0 0 2px #FF9900;
+}
+
+.status .user {
+  font-weight: bold;
+  color: #3D3D3D;
+}
+
+.status .content a {
+  color: #3D3D3D;
+  font-style: italic;
+  -webkit-transition: all 0.3s;
+  -moz-transition: all 0.3s;
+}
+
+.status .content a:hover {
+  color: white;
+  background: #3D3D3D;
+}
+
+/* Global */
+
+.clearer {
+  clear: both;
+}
+
+.black-shadow, .white-shadow, .orange-shadow {
+  -webkit-transition: all 0.3s;
+  -moz-transition: all 0.3s;
+}
+
+.black-shadow:hover {
+  color: white !important;
+  text-shadow: #3D3D3D 0 0 5px;
+}
+
+.white-shadow:hover {
+  color: white !important;
+  text-shadow: white 0 0 5px !important;
+}
+
+.orange-shadow:hover {
+  color: white !important;
+  text-shadow: #FF9900 0 0 5px;
+}
+
 .highlight {
   background-color: #fffac2 !important;
+}
+
+/* Firefox hacks */
+
+@-moz-document url-prefix() {
+  #actions li {
+    overflow: hidden;
+  }
+
+  #actions a {
+    padding-top: 10px;
+  }
+
+  .tag-info {
+    padding-top: 5px;
+  }
 }

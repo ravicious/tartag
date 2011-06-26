@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="pl">
   <head>
-    <title>Tartag</title>
+    <title>tartag</title>
     <meta charset="UTF-8"/>
 
     <script src="vendor/head.load.min.js"></script>
@@ -10,39 +10,66 @@
     <link rel="stylesheet" href="css/reset.css">
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="vendor/facebox/facebox.css">
+
+    <script type="text/javascript">
+
+      var _gaq = _gaq || [];
+      _gaq.push(['_setAccount', 'UA-24163852-1']);
+      _gaq.push(['_trackPageview']);
+
+      (function() {
+        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+      })();
+
+    </script>
   </head>
   <body>
     <div id="tartag">
-      <div class="title">
-        <h1>Tartag</h1>
-      </div>
+      <div id="header">
+        <div id="logo">tartag</div>
 
-      <span id="refresh-all" class="clickable">[odśwież wszystkie]</span>
-      <span id="delete-all" class="clickable">[usuń wszystkie]</span>
-      <div id="create-tag">
-        <input id="new-tag" placeholder="Nazwa tagu" type="text"/> <span class="smaller less-visible">(format: małe i duże litery oraz cyfry)</span>
+        <ul id="actions" class="horizontal-list">
+          <li><a class="white-shadow" href="#refresh_all" id="refresh-all" title="Odśwież wszystkie tagi">+</a></li>
+          <li><a class="white-shadow" href="#delete_all" id="delete-all" title="Usuń wszystkie tagi">&times;</a></li>
+        </ul>
+
+        <div id="create-tag">
+          <input id="new-tag" placeholder="Wpisz nazwę tagu, np. foto" type="text"/>
+        </div>
+
+        <ul id="nav" class="horizontal-list">
+          <li><a href="https://github.com/ravicious/tartag/wiki/FAQ">FAQ</a></li>
+        </ul>
+
+        <div class="clearer"></div>
+
       </div>
 
       <div id="tags">
         <div id="tag-list"></div>
       </div>
+
     </div>
 
     <!-- Templates -->
 
     <script type="text/template" id="tag-template">
-      <div class='panel'>
-        <span class='tag-name'></span>
-        <span class='tag-destroy clickable' title='Usuń tag'>[&times;]</span>
-        <span class='tag-refresh clickable'>[odśwież]</span>
+      <div class="tag-info">
+        <span class="name white-shadow">#ruby</span>
+        <a href="#" class="tag-destroy orange-shadow" title="Usuń">&times;</a>
+        <a href="#" class="tag-refresh orange-shadow" title="Odśwież">+</a>
         <img src="css/ajax-loader.gif" class="loader" alt="Wczytywanie" style="display:none" />
       </div>
       <ul class="statuses-list"></ul>
     </script>
 
     <script type="text/template" id="status-template">
-      <span class='status-user'><a></a></span> <span class='status-link smaller'></span> <span class='status-date smaller'></span>
-      <div class='status-body'><img src="" class="avatar" alt=""/><span class="content"></div></div>
+          <a class="dashboard-link" href="http://blip.pl/users/radarek/dashboard"><img src="http://blip.pl/users/radarek/avatar/atto.jpg" class="avatar" alt="radarek"></a>
+          <div class="status-body"><a class="user status-link black-shadow" href="http://blip.pl/s/570680735" title="2011-06-20 13:04:53"></a>: <span class="content"></span></div>
+          <div class="clearer"></div>
     </script>
+
   </body>
 </html>
