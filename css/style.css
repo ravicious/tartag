@@ -190,6 +190,11 @@ body {
   background: #3D3D3D;
 }
 
+.loader {
+  margin-top: -3px;
+  padding: 0;
+}
+
 /* Global */
 
 .clearer {
@@ -218,4 +223,8 @@ body {
 
 .highlight {
   background-color: #fffac2 !important;
+}
+
+.clickable {
+  cursor: pointer;
 }
