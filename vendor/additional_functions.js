@@ -43,13 +43,13 @@ var BodyParser = (function() {
   function userLink(body, url) {
     return process(body, findUsers, function(user){
       var clean = user.replace(/\^/,'');
-      return '<a href="'+url+clean+'">'+user+'</a>';
+      return '<a href="'+url+clean+'" target="_blank">'+user+'</a>';
     });
   }
   function tagLink(body,  url) {
     return process(body, findTags, function(tag){
       var clean = tag.replace(/^#/,'');
-      return '<a href="'+url+clean+'">'+tag+'</a>';
+      return '<a href="'+url+clean+'" target="_blank">'+tag+'</a>';
     });
   }
 
@@ -60,7 +60,7 @@ var BodyParser = (function() {
       if (link.match(/blip.pl\/[s|dm|pm]/)) {
         content = "[blip]";
       }
-      return '<a href="'+href+'">'+content+'</a>';
+      return '<a href="'+href+'" target="_blank">'+content+'</a>';
     });
   }
 

@@ -22,7 +22,7 @@ task :minify do
     if filename.include?('min.js')
       content = File.read("vendor/#{filename}")
     else
-      content = `closure-compiler --js=vendor/#{filename}`
+      content = `closure --js=vendor/#{filename}`
     end
 
     minified_content += content
